@@ -18,7 +18,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig); // Иниализация проекта Firebase
 
-const { db } = getFirestore(); // Инициализация базы данных Firestore
+const db = getFirestore(); // Инициализация базы данных Firestore
 const auth = getAuth(app); // Инициализация системы верификации
 
 export { db, auth };
