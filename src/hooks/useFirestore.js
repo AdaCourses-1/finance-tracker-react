@@ -1,4 +1,10 @@
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  Timestamp,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "../firebase/config";
 
 export const useFirestore = (collectionName) => {
@@ -13,5 +19,14 @@ export const useFirestore = (collectionName) => {
     }
   };
 
-  return { addDocument };
+  const deleteDocument = async (id) => {
+    try {
+      const docRef = doc(db, collectionName, id);
+      await deleteDoc(docRef);
+    } catch (err) {
+      console.log("Не смог удалить документ:", err.message);
+    }
+  };
+
+  return { addDocument, deleteDocument };
 };
